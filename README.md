@@ -15,6 +15,7 @@ The key features I've implemented:
 
 ➤ Sticky navigation bar that changes appearance on scroll
 
+
 📱 Structure & Functionality:
 
 ➤ Home Section - Hero area with animated profile icon, name, and call-to-action
@@ -24,6 +25,7 @@ The key features I've implemented:
 ➤ About Section - Personal bio highlighting my software development expertise with skill tags
 
 ➤ Contact Section - Links to my email, LinkedIn, and GitHub
+
 
 ✨ Interactive Elements:
 
@@ -38,6 +40,7 @@ The key features I've implemented:
 ➤ Dynamic typing effect for the subtitle
 
 ➤ Responsive project cards with lift effect
+
 
 🔧 Technical Details:
 
