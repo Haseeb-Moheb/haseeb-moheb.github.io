@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haseebullah Moheb - Data Scientist Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #0099cc;
+            --accent-color: #66e6ff;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --background: #0a0a0f;
+            --surface: #1a1a2e;
+            --border: #2a2a3e;
+            --card-bg: rgba(26, 26, 46, 0.8);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background);
+            overflow-x: hidden;
+        }
+
+        /* Starfield Background */
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f23 100%);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        .star:nth-child(odd) {
+            animation-delay: 1s;
+        }
+
+        .star:nth-child(3n) {
+            animation-delay: 2s;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes float-star {
+            0% { transform: translateY(0px) translateX(0px); }
+            33% { transform: translateY(-20px) translateX(10px); }
+            66% { transform: translateY(10px) translateX(-5px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+
+        .floating-star {
+            animation: float-star 6s ease-in-out infinite;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Dashboard */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 0.5rem 2rem;
+        }
+
+        .navbar.scrolled {
+            background: rgba(26, 26, 46, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-right: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            margin: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-links a.active {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            background: transparent;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(102, 230, 255, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.8;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: #0a0a0f;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease 0.6s both;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 212, 255, 0.6);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: #0a0a0f;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+        }
+
+        /* About Section */
+        .about {
+            background: rgba(26, 26, 46, 0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: #0a0a0f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: #0a0a0f;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .contact-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(10, 10, 15, 0.9);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .navbar {
+                left: 10px;
+                right: 10px;
+                transform: none;
+                width: calc(100% - 20px);
+                padding: 0.3rem 1rem;
+            }
+
+            .nav-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .logo {
+                margin-right: 0;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .skills {
+                justify-content: center;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Starfield Background -->
+    <div class="starfield" id="starfield"></div>
+
+    <!-- Navigation Dashboard -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <a href="#home" class="logo">HM</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-image">👨‍💻</div>
+                <h1>Haseebullah Moheb</h1>
+                <p class="hero-subtitle">Full-Stack Developer</p>
+                <p class="hero-description">
+                    I develop 3D visuals, user interfaces and web applications. I like to explore new technologies and develop software solutions while pursuing my Bachelor's Degree in Computer Science.
+                </p>
+                <a href="#projects" class="cta-button">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Espressonist Capstone Project</h3>
+                    <p class="project-description">
+                        Full-stack web application built with JavaScript, featuring modern web technologies and collaborative development practices.
+                    </p>
+                    <a href="https://github.com/Haseeb-Moheb/Espressonist-Capstone-Project" class="project-link" target="_blank">View on GitHub →</a>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">3D Portfolio</h3>
+                    <p class="project-description">
+                        Personal portfolio website showcasing 3D visuals and interactive elements, demonstrating skills in modern web development and 3D graphics.
+                    </p>
+                    <a href="https://github.com/Haseeb-Moheb/3d_portfolio" class="project-link" target="_blank">View on GitHub →</a>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Todo List App</h3>
+                    <p class="project-description">
+                        Clean and functional Todo List application built with HTML, CSS, and JavaScript, featuring local storage and responsive design.
+                    </p>
+                    <a href="https://github.com/Haseeb-Moheb/Todo-List-App" class="project-link" target="_blank">View on GitHub →</a>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">HM-Codex</h3>
+                    <p class="project-description">
+                        CodeGPT AI Application built with JavaScript that helps developers code more efficiently using artificial intelligence assistance.
+                    </p>
+                    <a href="https://github.com/Haseeb-Moheb/HM-Codex" class="project-link" target="_blank">View on GitHub →</a>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Unichat Application</h3>
+                    <p class="project-description">
+                        Real-time chat application built with JavaScript, featuring modern messaging capabilities and real-time communication.
+                    </p>
+                    <a href="https://github.com/Haseeb-Moheb/Unichat" class="project-link" target="_blank">View on GitHub →</a>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">React Chat Application</h3>
+                    <p class="project-description">
+                        Collaborative React-based chat application developed as part of educational coursework, showcasing modern React development practices.
+                    </p>
+                    <a href="https://github.com/uprighted-learners/react-chat-haseeb-marcel" class="project-link" target="_blank">View on GitHub →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content fade-in">
+                <p class="about-text">
+                    I'm a passionate Full-Stack Developer who loves creating 3D visuals, user interfaces, and web applications. 
+                    I enjoy exploring new technologies and developing innovative software solutions that solve real-world problems.
+                </p>
+                <p class="about-text">
+                    Currently pursuing my Bachelor's Degree in Computer Science, I'm continuously expanding my knowledge in 
+                    Artificial Intelligence, Systems Design, and Cloud Architecture. When I'm not coding, you'll find me 
+                    playing Chess, Tennis, Volleyball, or enjoying a good cup of coffee ☕.
+                </p>
+                
+                <div class="skills">
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Full-Stack Development</span>
+                    <span class="skill-tag">3D Graphics</span>
+                    <span class="skill-tag">UI/UX Design</span>
+                    <span class="skill-tag">Web Applications</span>
+                    <span class="skill-tag">AI Integration</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">Responsive Design</span>
+                    <span class="skill-tag">Software Development</span>
+                    <span class="skill-tag">Computer Science</span>
+                    <span class="skill-tag">Problem Solving</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Let's Connect</h2>
+            <div class="contact-content fade-in">
+                <p class="contact-text">
+                    Interested in collaborating on data science projects or discussing opportunities? 
+                    I'd love to hear from you! Feel free to reach out through any of the platforms below.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:your.email@example.com" class="contact-link">✉️ Email</a>
+                    <a href="https://www.linkedin.com/in/haseebullah-moheb-47b17b94/" class="contact-link" target="_blank">💼 LinkedIn</a>
+                    <a href="https://github.com/Haseeb-Moheb" class="contact-link" target="_blank">💻 GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Haseebullah Moheb. All rights reserved. Built with passion for data science.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Generate starfield
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            const numberOfStars = 200;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random size (1-3px)
+                const size = Math.random() * 2 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                // Random animation duration
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                
+                // Some stars float
+                if (Math.random() > 0.7) {
+                    star.classList.add('floating-star');
+                }
+                
+                starfield.appendChild(star);
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add staggered animation to project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Enhanced navbar with active states
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        // Update active nav link based on scroll position
+        function updateActiveNavLink() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNavLink);
+
+        // Dynamic typing effect for hero subtitle
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        const roles = ['Full-Stack Developer', '3D Visual Creator', 'UI/UX Designer', 'Problem Solver'];
+        let currentRole = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeRole() {
+            const currentText = roles[currentRole];
+            
+            if (isDeleting) {
+                heroSubtitle.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                heroSubtitle.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typingSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typingSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentRole = (currentRole + 1) % roles.length;
+                typingSpeed = 500;
+            }
+
+            setTimeout(typeRole, typingSpeed);
+        }
+
+        // Start typing effect and starfield
+        setTimeout(() => {
+            typeRole();
+            createStarfield();
+        }, 1000);
+    </script>
+</body>
+</html>
