@@ -1,5 +1,4 @@
-
-Modern, professional portfolio website! 
+# Modern, professional portfolio website! 
 
 The key features I've implemented:
 
