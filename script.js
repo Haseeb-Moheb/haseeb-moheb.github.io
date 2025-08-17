@@ -104,7 +104,7 @@ window.addEventListener('scroll', updateActiveNavLink);
 
 // Dynamic typing effect for hero subtitle
 const heroSubtitle = document.querySelector('.hero-subtitle');
-const roles = ['Full-Stack Developer', '3D Visual Creator', 'UI/UX Designer', 'Problem Solver'];
+const roles = ['Full-Stack Developer', '3D Visual Creator', 'User interface', 'Problem Solver'];
 let currentRole = 0;
 let charIndex = 0;
 let isDeleting = false;
