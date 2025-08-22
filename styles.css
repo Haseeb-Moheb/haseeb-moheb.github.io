@@ -262,6 +262,46 @@ body {
     border-radius: 2px;
 }
 
+/* Skills Section */
+.skills-section {
+    background: rgba(26, 26, 46, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.skills-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.skill-tag {
+    padding: 0.75rem 1.5rem;
+    background: rgba(26, 26, 46, 0.6);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.skill-tag:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: #0a0a0f;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+}
+
 /* Projects Section */
 .projects-grid {
     display: grid;
@@ -348,50 +388,33 @@ body {
 }
 
 .skills-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-primary);
     text-align: center;
-    margin: 3rem 0 2rem 0;
+    margin: 2rem 0 1rem 0;
     position: relative;
 }
 
 .skills-title::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -6px;
     left: 50%;
     transform: translateX(-50%);
-    width: 50px;
-    height: 3px;
+    width: 40px;
+    height: 2px;
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
     border-radius: 2px;
 }
 
-.skills {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
+.about .skills {
+    margin-top: 1rem;
 }
 
-.skill-tag {
+.about .skill-tag {
     padding: 0.5rem 1rem;
-    background: rgba(26, 26, 46, 0.6);
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    border-radius: 25px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.skill-tag:hover {
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    color: #0a0a0f;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+    font-size: 0.9rem;
 }
 
 /* Contact Section */
